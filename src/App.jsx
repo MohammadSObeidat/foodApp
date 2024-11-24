@@ -15,35 +15,20 @@ import CategoryData from './modules/categories/components/CategoryData/CategoryD
 import UserList from './modules/users/components/UserList/UserList'
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect, useState } from 'react'
-import { jwtDecode } from "jwt-decode";
 import ProtectedRotue from './modules/shared/components/ProtectedRotue/ProtectedRotue'
 import CreateRecipe from './modules/recipes/components/CreateRecipe/CreateRecipe'
 import EditRecipe from './modules/recipes/components/EditRecipe/EditRecipe'
 import Verification from './modules/authentication/components/Verification/Verification'
 
 function App() {
-  const [loginData, setLoginData] = useState(null)
-  const saveLoginData = () => {
-    const token = localStorage.getItem('token');
-    const decoded = jwtDecode(token);
-    setLoginData(decoded);
-  }
-
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      saveLoginData()
-    }
-  }, [])
-
   const router = createBrowserRouter([
     {
       path: '',
       element: <AuthLayout/>,
       errorElement: <NotFound/>,
       children: [
-        {index: true, element: <Login saveLoginData={saveLoginData}/>},
-        {path: 'login', element: <Login saveLoginData={saveLoginData}/>},
+        {index: true, element: <Login/>},
+        {path: 'login', element: <Login/>},
         {path: 'register', element: <Registeration/>},
         {path: 'verification', element: <Verification/>},
         {path: 'forget-pass', element: <ForgetPass/>},
@@ -52,12 +37,12 @@ function App() {
     },
     {
       path: 'dashboard',
-      element:  <ProtectedRotue loginData={loginData}>
-                  <MasterLayout loginData={loginData}/>
+      element:  <ProtectedRotue>
+                  <MasterLayout/>
                 </ProtectedRotue>,
       errorElement: <NotFound/>,
       children: [
-        {index: true, element: <Dashboard loginData={loginData}/>},
+        {index: true, element: <Dashboard/>},
         {path: 'recipes', element: <RecipesList/>},
         {path: 'recipes/create-recipe', element: <CreateRecipe/>},
         {path: 'recipes/:recipeId', element: <EditRecipe/>},

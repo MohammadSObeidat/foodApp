@@ -6,10 +6,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { axiosInstanceUrl, USERS_URL } from '../../../../services/endpoint/Endpoint'
+import { AuthContext } from '../../../../context/AuthContext'
 
-export default function Login({saveLoginData}) {
+export default function Login() {
+  const {saveLoginData} = useContext(AuthContext)
   const [type, setType] = useState('password')
   const Navigate = useNavigate()
   const {register, formState: { errors, isSubmitting }, handleSubmit} = useForm();
