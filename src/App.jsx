@@ -19,6 +19,7 @@ import ProtectedRotue from './modules/shared/components/ProtectedRotue/Protected
 import CreateRecipe from './modules/recipes/components/CreateRecipe/CreateRecipe'
 import EditRecipe from './modules/recipes/components/EditRecipe/EditRecipe'
 import Verification from './modules/authentication/components/Verification/Verification'
+import Favorites from './modules/Favorites/Favorites'
 
 function App() {
   const router = createBrowserRouter([
@@ -49,7 +50,8 @@ function App() {
         {path: 'recipe-data', element: <RecipeData/>},
         {path: 'categories', element: <CategoriesList/>},
         {path: 'category-data', element: <CategoryData/>},
-        {path: 'user', element: <UserList/>}
+        {path: 'user', element: <UserList/>},
+        {path: 'favorites', element: <Favorites/>}
       ]
     }
   ])

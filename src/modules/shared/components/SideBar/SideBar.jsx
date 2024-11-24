@@ -11,14 +11,17 @@ import categories from '../../../../assets/images/category-icon.png'
 import changePassword  from '../../../../assets/images/change-pass-icon.png'
 import logout from '../../../../assets/images/logout-icon.png'
 import logo from '../../../../assets/images/logo-sidebar.png'
+import heartIcon from '../../../../assets/images/icon _Heart_.png'
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { axiosInstance, USERS_URL } from '../../../../services/endpoint/Endpoint';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../../../context/AuthContext';
 
 export default function SideBar() {
   const Navigate = useNavigate()
+  const {loginData} = useContext(AuthContext)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [show, setShow] = useState(false);
   const [oldPassword, setOldPassword] = useState('password');
@@ -137,22 +140,28 @@ export default function SideBar() {
             <MenuItem component={<Link to='/dashboard'/>} icon={<img src={home} alt="" />}> 
               Home 
             </MenuItem>
-            <MenuItem component={<Link to='/dashboard/user'/>} icon={<img src={users} alt="" />}> 
-              Users
-            </MenuItem>
+            {loginData?.userGroup !== 'SystemUser' ? 
+              <MenuItem component={<Link to='/dashboard/user'/>} icon={<img src={users} alt="" />}> 
+                Users
+              </MenuItem> : ''}
             <MenuItem component={<Link to='/dashboard/recipes'/>} icon={<img src={recipes} alt="" />}> 
               Recipes
             </MenuItem>
-            <MenuItem component={<Link to='/dashboard/categories'/>} icon={<img src={categories} alt="" />}> 
-              Categories
-            </MenuItem>
+            {loginData?.userGroup === 'SystemUser' ? 
+              <MenuItem component={<Link to='/dashboard/favorites'/>} icon={<img src={heartIcon} alt="" />}> 
+                Favorites
+              </MenuItem> : ''}
+            {loginData?.userGroup !== 'SystemUser' ? 
+              <MenuItem component={<Link to='/dashboard/categories'/>} icon={<img src={categories} alt="" />}> 
+                Categories
+              </MenuItem> : ''}
             <MenuItem icon={<img src={changePassword} alt="" />} onClick={handleShow}> 
               Change Password
             </MenuItem>
             <MenuItem icon={<img src={logout} alt="" />} onClick={() => {
-              localStorage.removeItem('token')
-              Navigate('/')
-            }}> 
+                localStorage.removeItem('token')
+                Navigate('/')
+              }}> 
               Logout
             </MenuItem>
           </Menu>

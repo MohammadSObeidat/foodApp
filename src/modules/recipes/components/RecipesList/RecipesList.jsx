@@ -2,15 +2,17 @@ import './RecipesList.css'
 import Header from "../../../shared/components/Header/Header";
 import img from '../../../../assets/images/category-list.png'
 import noImg from '../../../../assets/images/nodata.png'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { axiosInstance, CATEGORY_URL, imageBaseURL, RECIPES_URL, TAGS_URL } from '../../../../services/endpoint/Endpoint';
+import { axiosInstance, CATEGORY_URL, FAVORITE_RECIPES_URL, imageBaseURL, RECIPES_URL, TAGS_URL } from '../../../../services/endpoint/Endpoint';
 import NoData from '../../../shared/components/NoData/NoData';
 import DeleteConfirmation from '../../../shared/components/DeleteConfirmation/DeleteConfirmation';
 import { Link } from 'react-router-dom';
 import { OrbitProgress } from 'react-loading-indicators';
+import { AuthContext } from '../../../../context/AuthContext';
 
 export default function RecipesList() {
+  const {loginData} = useContext(AuthContext)
   const [recipesList, setRecipes] = useState([])
   const [show, setShow] = useState(false);
   const [recipeId, setRecipeId] = useState(0)
@@ -93,6 +95,19 @@ export default function RecipesList() {
     getRecipes(10, 1, nameValue, tagValue, event.target.value)
   }
 
+  const addToFavorite = async (id) => {
+    try {
+      const res = await axiosInstance.post(FAVORITE_RECIPES_URL.POST_FAVORITE_RECIPES, 
+        {
+          recipeId: id
+        }        
+      )
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  } 
+
   useEffect(() => {
     getRecipes(10, 1)
     getCategories()
@@ -128,16 +143,17 @@ export default function RecipesList() {
         deleteItem={'Recipe'} 
         deleteFun={deleteRecipe} />
 
-        <div className="content d-flex justify-content-between align-items-center">
-          <div>
-            <h4>Recipe Table Details</h4>
-            <p>You can check all details</p>
-          </div>
-          <div>
-            <Link to={'/dashboard/recipes/create-recipe'} className="btn btn-success px-4">Add New Item</Link>
-          </div>
-        </div>
-
+        {loginData?.userGroup !== 'SystemUser' ?
+          <div className="content d-flex justify-content-between align-items-center">
+            <div>
+              <h4>Recipe Table Details</h4>
+              <p>You can check all details</p>
+            </div>
+            <div>
+              <Link to={'/dashboard/recipes/create-recipe'} className="btn btn-success px-4">Add New Item</Link>
+            </div>
+          </div> : ''
+        }
         <div className='row filter'>
           <div className='col-6 search-input'>
             <i className="fa-solid fa-magnifying-glass"></i>
@@ -185,20 +201,21 @@ export default function RecipesList() {
                         <td>{recipe?.description}</td>
                         <td>{recipe?.tag?.name}</td>
                         <td>{recipe?.category[0]?.name}</td>
-                        <td className='action'>
-                          <i style={{cursor:"pointer"}} onClick={() => setActiveMenuId(prevId => (prevId === recipe.id ? null : recipe.id))} className="fa-solid fa-ellipsis"></i>
-                          <ul className={`menu ${activeMenuId === recipe.id ? 'show' : ''}`}>
-                            <li><i title='View' className="fa-solid fa-eye text-success"></i> View</li>
-                            <Link style={{textDecoration:'none', color:'black'}} to={`/dashboard/recipes/${recipe?.id}`}>
-                              <li><i title='Edit' className="fa-solid fa-pen-to-square text-success px-3"></i> Edit</li>
-                            </Link>
-                            <li onClick={() => {
-                              // handleShow(recipe.id)
-                              // setActiveMenuId(null)
-                              handleShow(recipe?.id)
-                            }}><i title='Delete' className="fa-solid fa-trash text-success"></i> Delete</li>
-                          </ul>
-                        </td>
+                        {loginData?.userGroup !== 'SystemUser' ?
+                          <td className='action'>
+                            <i style={{cursor:"pointer"}} onClick={() => setActiveMenuId(prevId => (prevId === recipe.id ? null : recipe.id))} className="fa-solid fa-ellipsis"></i>
+                            <ul className={`menu ${activeMenuId === recipe.id ? 'show' : ''}`}>
+                              <li><i title='View' className="fa-solid fa-eye text-success"></i> View</li>
+                              <Link style={{textDecoration:'none', color:'black'}} to={`/dashboard/recipes/${recipe?.id}`}>
+                                <li><i title='Edit' className="fa-solid fa-pen-to-square text-success px-3"></i> Edit</li>
+                              </Link>
+                              <li onClick={() => {
+                                // handleShow(recipe.id)
+                                // setActiveMenuId(null)
+                                handleShow(recipe?.id)
+                              }}><i title='Delete' className="fa-solid fa-trash text-success"></i> Delete</li>
+                            </ul>
+                          </td> :  <i className="fa-regular fa-heart text-danger" onClick={() => addToFavorite(recipe?.id)}></i>}
                       </tr>
             })}
             </tbody> : <tbody>

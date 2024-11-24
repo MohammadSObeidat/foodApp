@@ -73,7 +73,7 @@
 .recipes-list .menu.show {
     display: block;
     position: absolute;
-    left: -120px;
+    left: -150px;
 }
 .filter .search-input {
     position: relative;
@@ -85,6 +85,12 @@
     right: 0;
     line-height: 35px;
     color: #0000004e;
+}
+
+.fa-heart:before {
+    line-height: 80px;
+    font-size: 25px;
+    cursor: pointer;
 }
 
 @media (max-width:768px) {

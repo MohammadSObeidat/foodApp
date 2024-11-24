@@ -49,3 +49,10 @@ export const RECIPES_URL = {
 export const TAGS_URL = {
     GET_TAGS: `/tag/`,
 }
+
+// Favorites Recipes Endpoints
+export const FAVORITE_RECIPES_URL = {
+    GET_FAVORITE_RECIPES: `/userRecipe/`,
+    POST_FAVORITE_RECIPES: `/userRecipe/`,
+    DELETE_RECIPES: (id) => `/userRecipe/${id}`,
+}
