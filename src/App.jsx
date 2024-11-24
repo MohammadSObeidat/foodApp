@@ -22,7 +22,6 @@ import CreateRecipe from './modules/recipes/components/CreateRecipe/CreateRecipe
 import EditRecipe from './modules/recipes/components/EditRecipe/EditRecipe'
 import Verification from './modules/authentication/components/Verification/Verification'
 
-
 function App() {
   const [loginData, setLoginData] = useState(null)
   const saveLoginData = () => {
