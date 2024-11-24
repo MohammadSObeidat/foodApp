@@ -15,7 +15,7 @@ export default function ForgetPass() {
     try {
       const res = await axiosInstanceUrl.post(USERS_URL.FORGET_PASSWORD, data)
       console.log(res);
-      Navigate('/reset-pass', { state: { email: data.email } })
+      Navigate('/reset-password', { state: { email: data.email } })
       toast.success(res.data.message)
     } catch (error) {
       toast.error(error.response.data.message)

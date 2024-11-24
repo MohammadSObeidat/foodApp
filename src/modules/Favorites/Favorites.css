@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    justify-items: center;
 }
 .favorites .favorite {
     background-color: #fff;
@@ -27,6 +28,13 @@
 .favorites .favorite .favorite-details h4 {
     color: #3A3A3D;
     font-size: 22px;
+}
+.favorites .favorite .favorite-details .favorite-text {
+    width: 70%;
+}
+.favorites .favorite .favorite-details .favorite-text p {
+    width: 100%;
+    overflow: hidden;
 }
 
 @media (max-width:768px) {

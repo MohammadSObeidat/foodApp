@@ -197,7 +197,7 @@ export default function RecipesList() {
               return  <tr key={index}>
                         <td>{recipe?.name}</td>
                         <td><img src={recipe?.imagePath ? `${imageBaseURL}/${recipe?.imagePath}` : noImg} alt="" style={{minWidth:'60px', maxWidth:'60px', minHeight:'60px', maxHeight:'60px'}}/></td>
-                        <td>{recipe?.price}</td>
+                        <td>$ {recipe?.price}</td>
                         <td>{recipe?.description}</td>
                         <td>{recipe?.tag?.name}</td>
                         <td>{recipe?.category[0]?.name}</td>

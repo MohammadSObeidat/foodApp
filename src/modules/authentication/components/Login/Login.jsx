@@ -76,7 +76,7 @@ export default function Login() {
           </div>
           <div className='links w-100 py-3 d-flex justify-content-between'>
             <Link className='link-reg' to='/register'>Register Now?</Link>
-            <Link className='link-for' to='/forget-pass'>Forgot Password?</Link>
+            <Link className='link-for' to='/forget-password'>Forgot Password?</Link>
           </div>
           <button className='btn btn-success w-100 my-2' disabled={isSubmitting}>
             {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}

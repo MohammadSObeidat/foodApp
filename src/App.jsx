@@ -32,8 +32,8 @@ function App() {
         {path: 'login', element: <Login/>},
         {path: 'register', element: <Registeration/>},
         {path: 'verification', element: <Verification/>},
-        {path: 'forget-pass', element: <ForgetPass/>},
-        {path: 'reset-pass', element: <ResetPass/>}
+        {path: 'forget-password', element: <ForgetPass/>},
+        {path: 'reset-password', element: <ResetPass/>}
       ]
     },
     {
