@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+.auth-container {
+    background-image: url('./assets/images/image 1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+.bg-overlay {
+    background: linear-gradient(45deg ,#2F8C60A1, #0000009F);
+}
+.header-caption h1 span {
+    color: #DFE0E0;
+}

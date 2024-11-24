@@ -1,0 +1,69 @@
+.form-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+    gap: 20px;
+}
+.form-inputs .form-input {
+    width: 100%;
+}
+.form-inputs .form-input {
+    background-color: #F7F7F7;
+    padding: 0 0 0 10px;
+}
+.form-inputs .form-input .password {
+    position: relative;
+}
+.form-inputs .form-input .password i {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 15px;
+}
+.form-inputs .form-input img {
+    width: 26px;
+    height: 23px;
+    padding-right: 10px;
+    border-right: 0.5px solid #8391A1;
+}
+.form-inputs .form-input input {
+    background: transparent;
+    width: calc(100% - 26px);
+    outline: none;
+}
+.form-inputs .form-input .eye {
+    color: #8391A1;
+    cursor: pointer;
+}
+.links .link-reg {
+    font-family: "Inter", serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.36px;
+    color: #3A3A3D;
+    text-decoration: none;
+}
+.links .link-for {
+    font-family: "Inter", serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.36px;
+    color: #4AA35A;
+    text-decoration: none;
+}
+.file {
+    background-color: #F7F7F7;
+}
+.file .password p {
+    padding-top: 5px;
+}
+.file .password span {
+    color: #009247;
+}
+@media (max-width: 768px) {
+    .form-inputs {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        gap: 25px;
+    }
+}

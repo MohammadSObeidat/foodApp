@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+CU:wght@100..400&family=Playwrite+PE:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.dashboard-content {
+    background-color: #F0FFEF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+}
+.dashboard-content .text h1 {
+    font-family: "Poppins", serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28.13px;
+    color: #1F263E;
+    margin: 0;
+}
+.dashboard-content .text h1 span {
+    color: #009247;
+}
+.dashboard-content .text p {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1F263E;
+}
+
+@media (max-width: 768px) {
+    .dashboard-content  {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .dashboard-content .text p {
+        width: 100% !important;
+    }
+}

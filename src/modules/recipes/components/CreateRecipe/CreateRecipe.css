@@ -1,0 +1,34 @@
+.create-inputs {
+    padding: 84px 135px;
+}
+.create-inputs .create-input {
+    width: 100%;
+}
+.create-inputs .create-input input, select, textarea {
+    border: none;
+    outline: none;
+    background-color: #F7F7F7;
+    width: 100%;
+    padding: 15px 30px;
+    border-radius: 8px;
+}
+.create-inputs #input-file {
+    background-color: #F0FFEF;
+    text-align: center;
+    border: 1px dotted #009247;
+    border-radius: 8px;
+    padding: 10px 10px;
+}
+.create-inputs #input-file p {
+    margin-top: 10px;
+    cursor: pointer;
+}
+.create-inputs #input-file span {
+    color: #009247;
+}
+
+@media (max-width: 768px) {
+    .create-inputs {
+        padding: 84px 60px;
+    }
+}

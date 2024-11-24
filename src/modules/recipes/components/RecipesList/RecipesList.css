@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+CU:wght@100..400&family=Playwrite+PE:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.recipes-list .content h4 {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: #1F263E;
+  margin: 0;
+}
+.recipes-list .content p {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #323C47;
+}
+.recipes-list table {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.recipes-list table thead {
+    background-color: #E2E5EB;
+    height: 88px;
+}
+.recipes-list table thead th:first-child {
+    border-radius: 15px 0 0 15px;
+}
+.recipes-list table thead th:last-child {
+    border-radius: 0 15px 15px 0;
+}
+.recipes-list table tbody tr {
+    height: 64px;
+}
+.recipes-list table tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+.recipes-list table tbody tr:nth-child(even) {
+    background-color: #F8F9FB;
+}
+.recipes-list table tbody tr td i {
+    cursor: pointer;
+}
+
+.recipes-list table tbody tr td.action {
+    position: relative;
+}
+.recipes-list .menu {
+    display: none;
+    padding: 0;
+    position: absolute;
+    top: -15px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 16px 0 #0000001A;
+    border-radius: 20px;
+    width: 174px;
+    height: 90px;
+}
+.recipes-list .menu li {
+    list-style: none;
+    cursor: pointer;
+    padding: 3px 15px;
+    text-align: left;
+}
+.recipes-list .menu li i {
+    padding: 0px 15px 0px 0px !important;
+}
+.recipes-list .menu li:hover {
+    background-color: #F8F9FB;
+    border-radius: 20px;
+}
+.recipes-list .menu.show {
+    display: block;
+    position: absolute;
+    left: -120px;
+}
+.filter .search-input {
+    position: relative;
+}
+.filter .search-input i {
+    position: absolute;
+    width: 50px;
+    height: 38px;
+    right: 0;
+    line-height: 35px;
+    color: #0000004e;
+}
+
+@media (max-width:768px) {
+    .recipes-list .menu.show {
+        position: absolute;
+        top: -15px;
+        left: -160px;
+    }
+}
+@media (min-width:768px) and (max-width: 990px){
+    .recipes-list .menu.show {
+        position: absolute;
+        top: -15px;
+        left: -160px;
+    }
+}

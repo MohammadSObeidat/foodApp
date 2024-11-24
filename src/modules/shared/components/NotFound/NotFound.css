@@ -1,0 +1,13 @@
+.not-found {
+    background-image: url(../../../../assets/images/notFound2.png);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: 80ch;
+}
+.not-found .content .text h1 {
+    font-size: 40px;
+}
+.not-found .content .text p#not {
+    color: #009247;
+    font-size: 32px;
+}
