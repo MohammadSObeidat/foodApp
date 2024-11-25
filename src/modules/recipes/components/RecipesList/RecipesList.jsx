@@ -33,7 +33,10 @@ export default function RecipesList() {
   };
 
   const getRecipes = async (pageSize, pageNumber, name, tagId, categoryId) => {
-    setLoad(true)
+    if (recipesList.length > 0) {
+      setLoad(false)
+    } else setLoad(true)
+    
     try {
       const res = await axiosInstance.get(RECIPES_URL.GET_RECIPES, 
         {params: {pageSize: pageSize, pageNumber: pageNumber, name: name, tagId: tagId, categoryId: categoryId}})
@@ -203,19 +206,33 @@ export default function RecipesList() {
                         <td>{recipe?.category[0]?.name}</td>
                         {loginData?.userGroup !== 'SystemUser' ?
                           <td className='action'>
-                            <i style={{cursor:"pointer"}} onClick={() => setActiveMenuId(prevId => (prevId === recipe.id ? null : recipe.id))} className="fa-solid fa-ellipsis"></i>
+                            <button onClick={() => setActiveMenuId(prevId => (prevId === recipe.id ? null : recipe.id))}>
+                              <i style={{cursor:"pointer"}} className="fa-solid fa-ellipsis"></i>
+                            </button>
                             <ul className={`menu ${activeMenuId === recipe.id ? 'show' : ''}`}>
-                              <li><i title='View' className="fa-solid fa-eye text-success"></i> View</li>
+                              <li>
+                                <button>
+                                  <i title='View' className="fa-solid fa-eye text-success"></i> View
+                                </button>
+                              </li>
                               <Link style={{textDecoration:'none', color:'black'}} to={`/dashboard/recipes/${recipe?.id}`}>
-                                <li><i title='Edit' className="fa-solid fa-pen-to-square text-success px-3"></i> Edit</li>
+                                <li>
+                                  <button>
+                                    <i title='Edit' className="fa-solid fa-pen-to-square text-success"></i> Edit
+                                  </button>
+                                </li>
                               </Link>
-                              <li onClick={() => {
-                                // handleShow(recipe.id)
-                                // setActiveMenuId(null)
-                                handleShow(recipe?.id)
-                              }}><i title='Delete' className="fa-solid fa-trash text-success"></i> Delete</li>
+                              <li>
+                                <button onClick={() => {
+                                  // handleShow(recipe.id)
+                                  // setActiveMenuId(null)
+                                  handleShow(recipe?.id)
+                                }}>
+                                  <i title='Delete' className="fa-solid fa-trash text-success"></i> Delete
+                                </button>
+                              </li>
                             </ul>
-                          </td> :  <i className="fa-regular fa-heart text-danger" onClick={() => addToFavorite(recipe?.id)}></i>}
+                          </td> :  <td> <button type='button' onClick={() => addToFavorite(recipe?.id)}><i className="fa-regular fa-heart text-danger"></i></button></td>}
                       </tr>
             })}
             </tbody> : <tbody>

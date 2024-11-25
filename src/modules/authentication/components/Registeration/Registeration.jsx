@@ -132,7 +132,7 @@ export default function Registeration() {
                   {...register('password', {
                     required: 'Password is required' 
                   })}/>
-                  {type === 'password' ? <i onClick={changeTypePass} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={changeTypePass} className='fa fa-eye eye'></i>}
+                  {type === 'password' ? <button type='button' onClick={changeTypePass}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={changeTypePass}><i className='fa fa-eye eye'></i></button>}
                 </div>
               </div>
               {errors.password && <p className='text-danger mt-1 mb-0'>{errors.password.message}</p>}
@@ -147,7 +147,7 @@ export default function Registeration() {
                     validate: (confirmPassword) => 
                     confirmPassword === watch('password') || "Password do not match",
                   })}/>
-                  {typeConfig === 'password' ? <i onClick={changeTypeConfPass} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={changeTypeConfPass} className='fa fa-eye eye'></i>}
+                  {typeConfig === 'password' ? <button type='button' onClick={changeTypeConfPass}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={changeTypeConfPass}><i className='fa fa-eye eye'></i></button>}
                 </div>
               </div>
               {errors.confirmPassword && <p className='text-danger mt-1 mb-0'>{errors.confirmPassword.message}</p>}

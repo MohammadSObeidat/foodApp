@@ -94,7 +94,7 @@ export default function SideBar() {
                   {...register('oldPassword', {
                     required: 'old password is required',
                   })}/>
-                  {oldPassword === 'password' ? <i onClick={oldPasswordFun} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={oldPasswordFun} className='fa fa-eye eye'></i>}
+                  {oldPassword === 'password' ? <button type='button' onClick={oldPasswordFun}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={oldPasswordFun}><i className='fa fa-eye eye'></i></button>}
                 </div>
               </div>
               {errors.oldPassword && <p className='text-danger my-1 text-start'>{errors.oldPassword.message}</p>}
@@ -105,7 +105,7 @@ export default function SideBar() {
                   {...register('newPassword', {
                     required: 'new password is required' 
                   })}/>
-                  {newPassword === 'password' ? <i onClick={newPasswordFun} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={newPasswordFun} className='fa fa-eye eye'></i>}
+                  {newPassword === 'password' ? <button type='button' onClick={newPasswordFun}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={newPasswordFun}><i className='fa fa-eye eye'></i></button>}
                 </div>
               </div>
               {errors.newPassword && <p className='text-danger my-1 text-start'>{errors.newPassword.message}</p>}
@@ -119,7 +119,7 @@ export default function SideBar() {
                       confirmNewPassword === watch('newPassword') || "new password do not match",
                   })}
                   />
-                  {confirmPassword === 'password' ? <i onClick={confirmPasswordFun} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={confirmPasswordFun} className='fa fa-eye eye'></i>}
+                  {confirmPassword === 'password' ? <button type='button' onClick={confirmPasswordFun}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={confirmPasswordFun}><i className='fa fa-eye eye'></i></button>}
                 </div>
               </div>
               {errors.confirmNewPassword && <p className='text-danger my-1 text-start'>{errors.confirmNewPassword.message}</p>}

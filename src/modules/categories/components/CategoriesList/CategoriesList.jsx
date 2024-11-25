@@ -4,7 +4,7 @@ import img from '../../../../assets/images/category-list.png'
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { axiosInstance, axiosInstanceUrl, CATEGORY_URL } from '../../../../services/endpoint/Endpoint';
+import { axiosInstance, CATEGORY_URL } from '../../../../services/endpoint/Endpoint';
 import DeleteConfirmation from '../../../shared/components/DeleteConfirmation/DeleteConfirmation';
 import NoData from '../../../shared/components/NoData/NoData';
 import Modal from 'react-bootstrap/Modal';
@@ -21,6 +21,7 @@ export default function CategoriesList() {
   const [activeMenuId, setActiveMenuId] = useState(null);
   const [load, setLoad] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [nameValue, setNameValue] = useState('')
 
   const {register, formState: { errors, isSubmitting }, handleSubmit, reset } = useForm();
 
@@ -43,7 +44,10 @@ export default function CategoriesList() {
   };
 
   const getCategory = async(pageSize, pageNumber, name) => {
-    setLoad(true)
+    if (categoryList.length > 0) {
+      setLoad(false)
+    } else setLoad(true)
+
     try {
       const res = await axiosInstance.get(CATEGORY_URL.GET_CATEGORIES, 
         {params: {name: name, pageSize: pageSize, pageNumber: pageNumber}})
@@ -68,7 +72,7 @@ export default function CategoriesList() {
     try {
       await axiosInstance.put(CATEGORY_URL.PUT_CATEGIRY(categoryId), data)
       handleCloseEdit()
-      getCategory()
+      getCategory(10, 1, nameValue)
       toast.success('Category successfully updated!');
     } catch (error) {
       toast.error(error?.response?.data?.message || 'Error updating category');
@@ -77,7 +81,7 @@ export default function CategoriesList() {
   }
 
   useEffect(() => {
-    getCategory(10, 1)
+    getCategory(10, 1, nameValue)
   }, [])
   
   useEffect(() => {
@@ -89,7 +93,7 @@ export default function CategoriesList() {
       const res = await axiosInstance.post(CATEGORY_URL.POST_CATEGORY, data)
       console.log(res);
       handleCloseAdd()
-      getCategory()
+      getCategory(10, 1, nameValue)
       toast.success('Category successfully added!')
     } catch (error) {
       const errorMessage = error?.response?.data?.message || 'Something went wrong!';
@@ -102,7 +106,7 @@ export default function CategoriesList() {
     try {
       await axiosInstance.delete(CATEGORY_URL.DELETE_CATEGIRY(categoryId))      
       handleClose()
-      getCategory()
+      getCategory(10, 1, nameValue)
       toast.success('Delete Successfuly')
     } catch (error) {
       toast.error(error?.response?.data?.message)
@@ -111,7 +115,7 @@ export default function CategoriesList() {
   }
 
   const getNameValue = (event) => {
-    console.log(event.target.value);
+    setNameValue(event.target.value);
     getCategory(10, 1, event.target.value)
   }
   
@@ -119,7 +123,7 @@ export default function CategoriesList() {
   const handlePreviousClick = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      getCategory(10, currentPage - 1); 
+      getCategory(10, currentPage - 1, nameValue); 
     }
   };
 
@@ -127,7 +131,7 @@ export default function CategoriesList() {
    const handleNextClick = () => {
     if (currentPage < pageNumber.length) {
       setCurrentPage(currentPage + 1);
-      getCategory(10, currentPage + 1);
+      getCategory(10, currentPage + 1, nameValue);
     }
   };
 
@@ -229,18 +233,30 @@ export default function CategoriesList() {
                         <td className='action'>
                           <i style={{cursor:"pointer"}} onClick={() => setActiveMenuId(prevId => (prevId === category.id ? null : category.id))} className="fa-solid fa-ellipsis"></i>
                           <ul className={`menu ${activeMenuId === category.id ? 'show' : ''}`}>
-                            <li onClick={() => {
-                              // handleShowEdit(category.id)
-                              setActiveMenuId(null)
-                            }}><i title='View' className="fa-solid fa-eye text-success"></i> View</li>
-                            <li onClick={() => {
-                              handleShowEdit(category.id)
-                              setActiveMenuId(null)
-                            }}><i title='Edit' className="fa-solid fa-pen-to-square text-success px-3"></i> Edit</li>
-                            <li onClick={() => {
-                              handleShow(category.id)
-                              setActiveMenuId(null)
-                            }}><i title='Delete' className="fa-solid fa-trash text-success"></i> Delete</li>
+                            <li>
+                              <button onClick={() => {
+                                // handleShowEdit(category.id)
+                                setActiveMenuId(null)
+                              }}>
+                                <i title='View' className="fa-solid fa-eye text-success"></i> View
+                              </button>
+                            </li>
+                            <li>
+                              <button onClick={() => {
+                                handleShowEdit(category.id)
+                                setActiveMenuId(null)
+                              }}>
+                                <i title='Edit' className="fa-solid fa-pen-to-square text-success px-3"></i> Edit
+                              </button>
+                            </li>
+                            <li>
+                              <button onClick={() => {
+                                handleShow(category.id)
+                                setActiveMenuId(null)
+                              }}>
+                                <i title='Delete' className="fa-solid fa-trash text-success"></i> Delete
+                              </button>
+                            </li>
                           </ul>
                         </td>
                       </tr>

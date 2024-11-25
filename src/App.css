@@ -21,7 +21,12 @@
 .inputs .input .password {
     position: relative;
 }
-.inputs .input .password i {
+.inputs .input .password button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.inputs .input .password button {
     position: absolute;
     right: 0;
     top: 50%;

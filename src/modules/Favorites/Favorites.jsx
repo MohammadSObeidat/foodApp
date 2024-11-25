@@ -11,7 +11,10 @@ export default function Favorites() {
     const [load, setLoad] = useState(false);
 
     const getFavorites = async () => {
-        setLoad(true)
+        if (favoritesLists.length > 0) {
+            setLoad(false)
+          } else setLoad(true)
+
         try {
             const res = await axiosInstance.get(FAVORITE_RECIPES_URL.GET_FAVORITE_RECIPES)
             console.log(res);
@@ -55,7 +58,9 @@ export default function Favorites() {
                                     <h4>{favorite?.recipe?.name}</h4>
                                     <p>{favorite?.recipe?.description}</p>
                                 </div>
-                                <i className="fa-solid fa-heart text-danger" onClick={() => deleteFavorite(favorite?.id)}></i>
+                                <button onClick={() => deleteFavorite(favorite?.id)}>
+                                    <i className="fa-solid fa-heart text-danger"></i>
+                                </button>
                             </div>
                         </div>
             }) : <NoData/>}

@@ -13,7 +13,12 @@
 .form-inputs .form-input .password {
     position: relative;
 }
-.form-inputs .form-input .password i {
+.form-inputs .form-input .password button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.form-inputs .form-input .password button {
     position: absolute;
     right: 0;
     top: 50%;

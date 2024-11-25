@@ -42,6 +42,11 @@
 .user-list table tbody tr td.action {
     position: relative;
 }
+.user-list table tbody tr td.action button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
 .user-list .menu {
     display: none;
     padding: 0;

@@ -25,6 +25,11 @@
     display: flex;
     justify-content: space-between;
 }
+.favorites .favorite .favorite-details button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
 .favorites .favorite .favorite-details h4 {
     color: #3A3A3D;
     font-size: 22px;

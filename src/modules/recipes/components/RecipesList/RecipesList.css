@@ -46,6 +46,11 @@
 .recipes-list table tbody tr td.action {
     position: relative;
 }
+.recipes-list table tbody tr td.action button, .recipes-list table tbody tr td button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
 .recipes-list .menu {
     display: none;
     padding: 0;
@@ -73,7 +78,7 @@
 .recipes-list .menu.show {
     display: block;
     position: absolute;
-    left: -150px;
+    left: -130px;
 }
 .filter .search-input {
     position: relative;

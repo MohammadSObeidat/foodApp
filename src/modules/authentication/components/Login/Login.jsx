@@ -69,7 +69,7 @@ export default function Login() {
                 {...register('password', {
                   required: 'Password is required' 
                 })}/>
-                {type === 'password' ? <i onClick={changeType} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={changeType} className='fa fa-eye eye'></i>}
+                {type === 'password' ? <button type='button' onClick={changeType}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={changeType}><i className='fa fa-eye eye'></i></button>}
               </div>
             </div>
             {errors.password && <p className='text-danger my-1'>{errors.password.message}</p>}

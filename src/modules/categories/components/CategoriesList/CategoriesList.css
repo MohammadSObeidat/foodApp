@@ -42,6 +42,11 @@
 .category-list table tbody tr td.action {
     position: relative;
 }
+.category-list table tbody tr td.action button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
 .category-list .menu {
     display: none;
     padding: 0;

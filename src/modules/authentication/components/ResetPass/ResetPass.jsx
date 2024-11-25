@@ -86,7 +86,7 @@ export default function ResetPass() {
                 {...register('password', {
                   required: 'Password is required' 
                 })}/>
-                {type === 'password' ? <i onClick={changeTypePass} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={changeTypePass} className='fa fa-eye eye'></i>}
+                {type === 'password' ? <button type='button' onClick={changeTypePass}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={changeTypePass}><i className='fa fa-eye eye'></i></button>}
               </div>
             </div>
             {errors.password && <p className='text-danger my-1'>{errors.password.message}</p>}
@@ -99,7 +99,7 @@ export default function ResetPass() {
                   validate: (confirmPassword) => 
                    confirmPassword === watch('password') || "Password do not match",
                 })}/>
-                {typeConfirm === 'password' ? <i onClick={changeTypeConfirm} className="fa-duotone fa-solid fa-eye-slash eye"></i> : <i onClick={changeTypeConfirm} className='fa fa-eye eye'></i>}
+                {typeConfirm === 'password' ? <button type='button' onClick={changeTypeConfirm}><i className="fa-duotone fa-solid fa-eye-slash eye"></i></button> : <button type='button' onClick={changeTypeConfirm}><i className='fa fa-eye eye'></i></button>}
               </div>
             </div>
             {errors.confirmPassword && <p className='text-danger my-1'>{errors.confirmPassword.message}</p>}

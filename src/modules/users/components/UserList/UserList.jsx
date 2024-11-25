@@ -49,7 +49,10 @@ export default function UserList() {
   };
 
   const getUsers = async (pageSize, pageNumber, userName, email, country, groups) => {
-    setLoad(true)
+    if (userList.length > 0) {
+      setLoad(false)
+    } else setLoad(true)
+
     try {
       const res = await axiosInstance.get(USERS_URL.GET_USERS, 
         {params: {
@@ -206,16 +209,27 @@ export default function UserList() {
                         <td>{user?.country}</td>
                         <td>{user?.phoneNumber}</td>
                         <td className='action'>
-                          <i style={{cursor:"pointer"}} onClick={() => setActiveMenuId(prevId => (prevId === user.id ? null : user.id))} className="fa-solid fa-ellipsis"></i>
+                          <button onClick={() => setActiveMenuId(prevId => (prevId === user.id ? null : user.id))}>
+                            <i style={{cursor:"pointer"}} className="fa-solid fa-ellipsis"></i>
+                          </button>
                           <ul className={`menu ${activeMenuId === user.id ? 'show' : ''}`}>
-                            <li onClick={() => {
-                              handleShowInfo(user?.id)
-                              setActiveMenuId(null)
-                            }}><i title='View' className="fa-solid fa-eye text-success"></i> View</li>
-                            <li onClick={() => {
-                              handleShow(user?.id)
-                              setActiveMenuId(null)
-                            }}><i title='Delete' className="fa-solid fa-trash text-success"></i> Delete</li>
+                            
+                              <li>
+                                <button onClick={() => {
+                                  handleShowInfo(user?.id)
+                                  setActiveMenuId(null)
+                                }}>
+                                  <i title='View' className="fa-solid fa-eye text-success"></i> View
+                                </button>
+                              </li>
+                              <li>
+                                <button onClick={() => {
+                                  handleShow(user?.id)
+                                  setActiveMenuId(null)
+                                }}>
+                                  <i title='Delete' className="fa-solid fa-trash text-success"></i> Delete
+                                </button>
+                              </li>
                           </ul>
                         </td>
                       </tr>
