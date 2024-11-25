@@ -20,6 +20,8 @@ import CreateRecipe from './modules/recipes/components/CreateRecipe/CreateRecipe
 import EditRecipe from './modules/recipes/components/EditRecipe/EditRecipe'
 import Verification from './modules/authentication/components/Verification/Verification'
 import Favorites from './modules/Favorites/Favorites'
+import ProtectedRouteIsAdmin from './modules/shared/components/ProtectedRouteIsAdmin/ProtectedRouteIsAdmin'
+import ProtectedRouteIsUser from './modules/shared/components/ProtectedRouteIsUser/ProtectedRouteIsUser'
 
 function App() {
   const router = createBrowserRouter([
@@ -45,13 +47,13 @@ function App() {
       children: [
         {index: true, element: <Dashboard/>},
         {path: 'recipes', element: <RecipesList/>},
-        {path: 'recipes/create-recipe', element: <CreateRecipe/>},
-        {path: 'recipes/:recipeId', element: <EditRecipe/>},
+        {path: 'recipes/create-recipe', element: <ProtectedRouteIsAdmin><CreateRecipe/></ProtectedRouteIsAdmin>},
+        {path: 'recipes/:recipeId', element: <ProtectedRouteIsAdmin><EditRecipe/></ProtectedRouteIsAdmin>},
         {path: 'recipe-data', element: <RecipeData/>},
-        {path: 'categories', element: <CategoriesList/>},
+        {path: 'categories', element: <ProtectedRouteIsAdmin><CategoriesList/></ProtectedRouteIsAdmin>},
         {path: 'category-data', element: <CategoryData/>},
-        {path: 'user', element: <UserList/>},
-        {path: 'favorites', element: <Favorites/>}
+        {path: 'user', element: <ProtectedRouteIsAdmin><UserList/></ProtectedRouteIsAdmin>},
+        {path: 'favorites', element: <ProtectedRouteIsUser><Favorites/></ProtectedRouteIsUser>}
       ]
     }
   ])

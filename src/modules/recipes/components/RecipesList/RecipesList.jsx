@@ -17,7 +17,7 @@ export default function RecipesList() {
   const [show, setShow] = useState(false);
   const [recipeId, setRecipeId] = useState(0)
   const [activeMenuId, setActiveMenuId] = useState(null);
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
   const [pageNumber, setPageNumber] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const [categories, setCategories] = useState([])
@@ -35,7 +35,7 @@ export default function RecipesList() {
   const getRecipes = async (pageSize, pageNumber, name, tagId, categoryId) => {
     if (recipesList.length > 0) {
       setLoad(false)
-    } else setLoad(true)
+    }
     
     try {
       const res = await axiosInstance.get(RECIPES_URL.GET_RECIPES, 
@@ -193,7 +193,7 @@ export default function RecipesList() {
               <th>Actions</th>
             </tr>
           </thead>
-          {load && <td colSpan={7}><OrbitProgress color="#32cd32" size="medium" text="" textColor="" /></td>}
+          {load && <td className='pt-5' colSpan={7}><OrbitProgress color="#32cd32" size="medium" text="" textColor="" /></td>}
 
           {load ? '' : recipesList.length > 0 ? <tbody>
             {recipesList.map((recipe, index) => {

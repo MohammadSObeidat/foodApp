@@ -19,7 +19,7 @@ export default function CategoriesList() {
   const [showEdit, setShowEdit] = useState(false);
   const [categoryId, setCategoryId] = useState(0);
   const [activeMenuId, setActiveMenuId] = useState(null);
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [nameValue, setNameValue] = useState('')
 
@@ -46,7 +46,7 @@ export default function CategoriesList() {
   const getCategory = async(pageSize, pageNumber, name) => {
     if (categoryList.length > 0) {
       setLoad(false)
-    } else setLoad(true)
+    }
 
     try {
       const res = await axiosInstance.get(CATEGORY_URL.GET_CATEGORIES, 
@@ -223,7 +223,7 @@ export default function CategoriesList() {
               <th>Actions</th>
             </tr>
           </thead>
-          {load && <td colSpan={3}><OrbitProgress color="#32cd32" size="medium" text="" textColor="" /></td>}
+          {load && <td className='pt-5' colSpan={3}><OrbitProgress color="#32cd32" size="medium" text="" textColor="" /></td>}
 
           {load ? '' :  categoryList.length > 0 ?  <tbody>
             {categoryList.map((category, index) => {

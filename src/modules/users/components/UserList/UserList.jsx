@@ -17,7 +17,7 @@ export default function UserList() {
   const [showInfo, setShowInfo] = useState(false);
   const [userId, setUserId] = useState(0);
   const [userData, setUserData] = useState(null)
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
   const [pageNumber, setPageNumber] = useState([]);
   const [currentPage, setCurrentPage] = useState(1)
   const [nameValue, setNameValue] = useState('')
@@ -35,7 +35,7 @@ export default function UserList() {
   const handleCloseInfo = () => setShowInfo(false);
   const handleShowInfo = async (id) => {
     console.log(id);
-    setLoad(true)
+    // setLoad(true)
     try {
       const res = await axiosInstance.get(USERS_URL.GET_USER(id))
       console.log(res);
@@ -51,7 +51,7 @@ export default function UserList() {
   const getUsers = async (pageSize, pageNumber, userName, email, country, groups) => {
     if (userList.length > 0) {
       setLoad(false)
-    } else setLoad(true)
+    }
 
     try {
       const res = await axiosInstance.get(USERS_URL.GET_USERS, 
@@ -198,7 +198,7 @@ export default function UserList() {
               <th>Actions</th>
             </tr>
           </thead>
-          {load && <td colSpan={6}><OrbitProgress color="#32cd32" size="medium" text="" textColor="" /></td>}
+          {load && <td className='pt-5' colSpan={6}><OrbitProgress color="#32cd32" size="medium" text="" textColor="" /></td>}
 
           {load ? '' : userList.length > 0 ?  <tbody>
             {userList.map((user, index) => {
