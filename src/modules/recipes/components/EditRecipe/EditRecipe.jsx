@@ -13,9 +13,21 @@ export default function EditRecipe() {
   const [categories, setCategories] = useState([])
   const [tags, setTags] = useState([])
   const [recipe, setRecipe] = useState([])
+  const [imagePreview, setImagePreview] = useState(null);
   const {recipeId} = useParams()
   const Navigate = useNavigate()
   const {register, formState: {errors, isSubmitting}, handleSubmit, setValue} = useForm()
+
+  // Handle file change event
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Set the file in React Hook Form
+      setValue("recipeImage", file);
+      // Generate a URL for previewing the image
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
 
   const editRecipe = async (data) => {
     const formData = new FormData()
@@ -123,9 +135,10 @@ export default function EditRecipe() {
                 <p>Drag & Drop or <span>Choose a Item Image</span> to Upload</p>
               </label>
               <input type="file" placeholder='Recipe Name' id='image' style={{display: 'none'}}
-              {...register('recipeImage')}/>
+              {...register('recipeImage')}
+              onChange={handleFileChange}/>
             </div>
-            <img style={{minWidth:'350px', maxWidth:'350px', minHeight:'218px', maxHeight:'218px'}} src={recipe?.imagePath ? `${imageBaseURL}/${recipe?.imagePath}` : noImg} alt="" />
+            <img style={{minWidth:'350px', maxWidth:'350px', minHeight:'218px', maxHeight:'218px'}} src={imagePreview ? imagePreview : recipe?.imagePath ? `${imageBaseURL}/${recipe?.imagePath}` : noImg} alt="" />
             <div className='d-flex justify-content-end'>
               <Link to={'/dashboard/recipes'} className="btn btn-outline-success px-5 mx-4">Cancel</Link>
               <button className='btn btn-success px-3' disabled={isSubmitting}>
