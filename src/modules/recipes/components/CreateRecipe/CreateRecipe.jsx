@@ -20,9 +20,7 @@ export default function CreateRecipe() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Set the file in React Hook Form
       setValue("recipeImage", file);
-      // Generate a URL for previewing the image
       setImagePreview(URL.createObjectURL(file));
     }
   };
@@ -34,7 +32,7 @@ export default function CreateRecipe() {
     formData.append('price', data?.price)
     formData.append('tagId', data?.tagId)
     formData.append('categoriesIds', data?.categoriesIds)
-    formData.append('recipeImage', data?.recipeImage[0])
+    formData.append('recipeImage', data?.recipeImage)
 
     try {
       const res = await axiosInstance.post(RECIPES_URL.POST_RECIPES, formData)
