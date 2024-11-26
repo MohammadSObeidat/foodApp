@@ -58,6 +58,12 @@ export default function EditRecipe() {
       const res = await axiosInstance.get(RECIPES_URL.GET_RECIPE(recipeId))
       console.log(res);
       setRecipe(res?.data)
+
+      setValue('name', res?.data?.name)
+      setValue('tagId', res?.data?.tag?.id)
+      setValue('price', res?.data?.price)
+      setValue('categoriesIds', res?.data?.category?.[0]?.id)
+      setValue('description', res?.data?.description)
     } catch (error) {
       console.log(error);
     }
@@ -85,19 +91,10 @@ export default function EditRecipe() {
     }
   }
 
-  const setValueRecipe = () => {
-    setValue('name', recipe?.name)
-    setValue('tagId', recipe?.tag?.id)
-    setValue('price', recipe?.price)
-    setValue('categoriesIds', recipe?.category?.[0]?.id)
-    setValue('description', recipe?.description)
-  }
-
   useEffect(() => {
     getCategories()
     getTags()
     getRecipe()
-    setValueRecipe()
   }, [])
 
   return (
