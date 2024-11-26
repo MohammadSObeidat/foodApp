@@ -46,6 +46,7 @@ export default function EditRecipe() {
       console.log(error)
     }    
   }
+  
   // setValue('name', recipe?.name)
   // setValue('tagId', recipe?.tag?.id)
   // setValue('price', recipe?.price)
@@ -84,16 +85,19 @@ export default function EditRecipe() {
     }
   }
 
-  useEffect(() => {
-    getCategories()
-    getTags()
-    getRecipe()
-
+  const setValueRecipe = () => {
     setValue('name', recipe?.name)
     setValue('tagId', recipe?.tag?.id)
     setValue('price', recipe?.price)
     setValue('categoriesIds', recipe?.category?.[0]?.id)
     setValue('description', recipe?.description)
+  }
+
+  useEffect(() => {
+    getCategories()
+    getTags()
+    getRecipe()
+    setValueRecipe()
   }, [])
 
   return (
