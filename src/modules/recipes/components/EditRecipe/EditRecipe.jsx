@@ -46,11 +46,11 @@ export default function EditRecipe() {
       console.log(error)
     }    
   }
-  setValue('name', recipe?.name)
-  setValue('tagId', recipe?.tag?.id)
-  setValue('price', recipe?.price)
-  setValue('categoriesIds', recipe?.category?.[0]?.id)
-  setValue('description', recipe?.description)
+  // setValue('name', recipe?.name)
+  // setValue('tagId', recipe?.tag?.id)
+  // setValue('price', recipe?.price)
+  // setValue('categoriesIds', recipe?.category?.[0]?.id)
+  // setValue('description', recipe?.description)
 
   const getRecipe = async () => {
     try {
@@ -88,6 +88,12 @@ export default function EditRecipe() {
     getCategories()
     getTags()
     getRecipe()
+
+    setValue('name', recipe?.name)
+    setValue('tagId', recipe?.tag?.id)
+    setValue('price', recipe?.price)
+    setValue('categoriesIds', recipe?.category?.[0]?.id)
+    setValue('description', recipe?.description)
   }, [])
 
   return (
