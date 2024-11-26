@@ -18,6 +18,7 @@ export default function CreateRecipe() {
 
   // Handle file change event
   const handleFileChange = (e) => {
+    e.preventDefault()
     const file = e.target.files[0];
     if (file) {
       setValue("recipeImage", file);
